@@ -1,0 +1,2 @@
+H:/VS projects/note detection/vcpkg_installed/x64-windows-static/vcpkg/blds/detect_compiler/x64-windows-rel/CMakeFiles/edit_cache.dir
+H:/VS projects/note detection/vcpkg_installed/x64-windows-static/vcpkg/blds/detect_compiler/x64-windows-rel/CMakeFiles/rebuild_cache.dir

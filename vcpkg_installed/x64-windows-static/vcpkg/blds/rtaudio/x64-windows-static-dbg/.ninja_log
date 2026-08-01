@@ -1,0 +1,21 @@
+# ninja log v6
+31	791	8061478970355236	tests/CMakeFiles/record.dir/record.cpp.obj	22195cea5ac642f6
+36	803	8061478970405102	tests/CMakeFiles/duplex.dir/duplex.cpp.obj	9bbef1f45a3a87f1
+16	824	8061478970203940	CMakeFiles/rtaudio.dir/rtaudio_c.cpp.obj	141c5bcf3813f622
+27	831	8061478970320693	tests/CMakeFiles/playraw.dir/playraw.cpp.obj	baba1cb18ae77d0d
+44	838	8061478970481728	tests/CMakeFiles/testall.dir/testall.cpp.obj	241d51d6c7c3d7bf
+48	845	8061478970529634	tests/CMakeFiles/teststops.dir/teststops.cpp.obj	ba579e7c4af6115f
+40	849	8061478970446884	tests/CMakeFiles/apinames.dir/apinames.cpp.obj	b871b4a517bdaea4
+23	855	8061478970274943	tests/CMakeFiles/playsaw.dir/playsaw.cpp.obj	32827dac541db9e1
+19	862	8061478970243847	tests/CMakeFiles/audioprobe.dir/audioprobe.cpp.obj	13ff417742c5f686
+11	1016	8061478970158891	CMakeFiles/rtaudio.dir/RtAudio.cpp.obj	9140949296924fd4
+1016	1062	8061478980217400	rtaudiod.lib	e52bd5d6da6b5b72
+1091	1806	8061478980967810	tests/duplex.exe	90fe1971a0de8415
+1075	1806	8061478980798260	tests/playraw.exe	d5cca9b5e8cc2fde
+1069	1806	8061478980738418	tests/playsaw.exe	a05801f952431b5f
+1062	1813	8061478980668607	tests/audioprobe.exe	babdc3fbef230abf
+1083	1813	8061478980878134	tests/record.exe	5ccd620c05123740
+1100	1818	8061478981047595	tests/apinames.exe	4badb5fd9bb2770c
+1107	1832	8061478981123386	tests/testall.exe	feb5be3b09d2ffd5
+1115	1838	8061478981202136	tests/teststops.exe	e046a348b78f2b5b
+1838	1934	8061478988428529	CMakeFiles/install.util	98f94ff69c19754c

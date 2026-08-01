@@ -1,0 +1,8 @@
+Package: rtaudio
+Version: 2021-11-16
+Port-Version: 2
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 2d0526f4e44aa1fa38962ea8ffb5cc09997ad10fd78f7560ee31200c25bb023d
+Description: A set of C++ classes that provide a common API for realtime audio input/output across Linux (native ALSA, JACK, PulseAudio and OSS), Macintosh OS X (CoreAudio and JACK), and Windows (DirectSound, ASIO and WASAPI) operating systems.

@@ -1,0 +1,8 @@
+H:/VS projects/note detection/vcpkg_installed/x64-windows-static/vcpkg/pkgs/rtaudio_x64-windows-static/debug/lib/rtaudiod.lib
+H:/VS projects/note detection/vcpkg_installed/x64-windows-static/vcpkg/pkgs/rtaudio_x64-windows-static/debug/include/rtaudio/RtAudio.h
+H:/VS projects/note detection/vcpkg_installed/x64-windows-static/vcpkg/pkgs/rtaudio_x64-windows-static/debug/include/rtaudio/rtaudio_c.h
+H:/VS projects/note detection/vcpkg_installed/x64-windows-static/vcpkg/pkgs/rtaudio_x64-windows-static/debug/share/rtaudio/RtAudioConfig.cmake
+H:/VS projects/note detection/vcpkg_installed/x64-windows-static/vcpkg/pkgs/rtaudio_x64-windows-static/debug/share/rtaudio/RtAudioConfig-version.cmake
+H:/VS projects/note detection/vcpkg_installed/x64-windows-static/vcpkg/pkgs/rtaudio_x64-windows-static/debug/share/rtaudio/RtAudioTargets.cmake
+H:/VS projects/note detection/vcpkg_installed/x64-windows-static/vcpkg/pkgs/rtaudio_x64-windows-static/debug/share/rtaudio/RtAudioTargets-debug.cmake
+H:/VS projects/note detection/vcpkg_installed/x64-windows-static/vcpkg/pkgs/rtaudio_x64-windows-static/debug/lib/pkgconfig/rtaudio.pc
