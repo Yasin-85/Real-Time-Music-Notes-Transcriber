@@ -29,6 +29,9 @@
     <None Include="vcpkg.json">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="README.md">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="json.hpp">
