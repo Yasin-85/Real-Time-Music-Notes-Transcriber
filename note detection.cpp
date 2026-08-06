@@ -9,28 +9,75 @@
 
 using json = nlohmann::json;
 
-int main() 
+static int record_callback(void* output_buffer, void* input_buffer, unsigned int n_frames, double stream_time, RtAudioStreamStatus status, void* user_data);
+
+int main()
 {
-    RtAudio audio;
+	RtAudio audio;
 
-    unsigned int device_count = audio.getDeviceCount();
+	RtAudio::StreamParameters params;
+	params.deviceId = audio.getDefaultInputDevice();
+	params.nChannels = 1;
+	params.firstChannel = 0;
 
-    std::vector<RtAudio::DeviceInfo> info;
-    info.reserve(device_count);
+	std::vector<double> audio_buffer;
+	unsigned int buffer_size = 256;
 
-    for (int i = 0; i < device_count; i++)
-    {
-        info.push_back(audio.getDeviceInfo(i));
-    }
+	try
+	{
+		audio.openStream(nullptr, &params, RTAUDIO_FLOAT64, 44100, &buffer_size, &record_callback, &audio_buffer);
+	}
+	catch (RtAudioError& e)
+	{
+		std::cerr << e.getMessage() << '\n';
+		return 1;
+	}
 
-    for (const auto& v : info)
-    {
-        std::string input = v.isDefaultInput ? "default input" : "not default input";
-        std::string output = v.isDefaultOutput ? "default output" : "not default output";
-        
-        std::cout << v.name << " Duplex channels : " << v.duplexChannels << ", " << input << ", " << output << std::endl;
-        std::cout << "input channels : " << v.inputChannels << ", output channels : " << v.outputChannels << std::endl << std::endl;
-    }
+	RtAudio::DeviceInfo info = audio.getDeviceInfo(params.deviceId);
+	std::cout << "Using microphone: " << info.name << std::endl;
 
-    return 0;
+	std::cout << "press enter to start recording..." << "\n";
+	std::cin.get();
+
+	try
+	{
+		audio.startStream();
+	}
+	catch (RtAudioError& e)
+	{
+		std::cerr << "error starting stream : " << e.getMessage() << '\n';
+	}
+
+	std::cout << "recording, press enter to stop..." << '\n';
+	std::cin.get();
+
+	try 
+	{
+		audio.stopStream();
+		audio.closeStream();
+	}
+	catch (RtAudioError& e) 
+	{
+		std::cerr << "error stopping stream: " << e.getMessage() << std::endl;
+		return 1;
+	}
+
+	std::cout << "Recorded " << audio_buffer.size() << " samples." << std::endl;
+
+	return 0;
+}
+
+
+static int record_callback(void* output_buffer, void* input_buffer, unsigned int n_frames, double stream_time, RtAudioStreamStatus status, void* user_data)
+{
+	double* input = static_cast<double*>(input_buffer);
+
+	std::vector<double>* buffer = static_cast<std::vector<double>*>(user_data);
+
+	for (unsigned int i = 0; i < n_frames; i++)
+	{
+		buffer->push_back(input[i]);
+	}
+
+	return 0;
 }
