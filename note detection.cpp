@@ -29,8 +29,9 @@ struct Grid_Slot
 struct Call_Back_Data
 {
     std::vector<double> accumulator;
-    int samples_per_slot, sample_rate, current_slot, slots_per_bar;
+    int samples_per_slot, sample_rate, current_slot, slots_per_bar, RMS_buffer_index;
     std::vector<Grid_Slot> grid;
+    double RMS_avg, RMS_history[10];
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -99,6 +100,13 @@ int main()
             call_back_data.sample_rate = 44100;
             call_back_data.current_slot = 0;
             call_back_data.slots_per_bar = (subdivision / time_sig_den) * time_sig_num;
+            call_back_data.RMS_avg = 0.0;
+            call_back_data.RMS_buffer_index = 0;
+
+            for (int i = 0; i < 10; i++)
+            {
+                call_back_data.RMS_history[i] = 0.0;
+            }
 
             // calculate samples per slot
             seconds_per_beat = 60 / BPM;
@@ -338,17 +346,29 @@ static int record_callback(void* output_buffer, void* input_buffer, unsigned int
         // detect the pitch
         double frequency = pitch_detect(chunk, data->sample_rate);
         double rms = get_RMS(chunk);
-        //std::cout << "RMS: " << rms << std::endl;
 
-        // Silence check
-        if (frequency <= 0 || rms <= 0.001)
+        // RMS avg for RMS attack check
+        data->RMS_history[data->RMS_buffer_index] = rms;
+        data->RMS_buffer_index = (data->RMS_buffer_index + 1) % 10;
+
+        double sum = 0.0;
+
+        for (int i = 0; i < 10; i++)
         {
-            frequency = 0.0;
+            sum += data->RMS_history[i];
         }
+        data->RMS_avg = sum / 10.0;
+
+        if (rms >= data->RMS_avg && rms > 0.001)
+        {
+            // attack detected -> register note
+            data->grid[data->current_slot].frequency = frequency;
+        }
+        else
+            data->grid[data->current_slot].frequency = 0.0;
 
         // store in grid
         data->grid[data->current_slot].amplitude = rms;
-        data->grid[data->current_slot].frequency = frequency;
 
         // Move to next slot
         data->current_slot++;
